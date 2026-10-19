@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plano de estudos – Ciência de Dados</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#EDF1F5;--surface:#fff;--ink:#16212E;--muted:#5A6878;--line:#D3DBE4;--accent:#0E7C86;--on-accent:#fff;--gold:#9A6410;--gold-bg:#F7EBD3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1720;--surface:#17212C;--ink:#E6ECF2;--muted:#98A6B5;--line:#28364A;--accent:#4FC3CC;--on-accent:#0F1720;--gold:#E4B35C;--gold-bg:#3A2E14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1720;--surface:#17212C;--ink:#E6ECF2;--muted:#98A6B5;--line:#28364A;--accent:#4FC3CC;--on-accent:#0F1720;--gold:#E4B35C;--gold-bg:#3A2E14;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.wrap{max-width:680px;margin:0 auto}
+h1{font-size:1.35rem;line-height:1.25;margin:0 0 2px;font-weight:600}
+.sub{color:var(--muted);font-size:.9rem;margin:0 0 10px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.pct{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-top:6px}
+.pct b{color:var(--ink);font-weight:600}
+nav{display:flex;gap:6px;margin-top:10px}
+nav button{flex:1;padding:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;font:500 .95rem inherit;font-family:inherit;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+main{padding:14px 16px 40px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:.92rem;color:var(--muted);margin-bottom:12px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:14px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary .t{font-weight:600}
+summary .w{grid-column:1;color:var(--muted);font-size:.85rem}
+summary .c{grid-row:1/3;grid-column:2;font-size:.85rem;color:var(--accent);font-weight:600}
+summary .mini{grid-column:1/3;height:4px;background:var(--line);border-radius:3px;margin-top:8px;overflow:hidden}
+summary .mini i{display:block;height:100%;background:var(--accent);width:0}
+.body{padding:2px 14px 12px;border-top:1px solid var(--line)}
+.goal{color:var(--muted);font-size:.9rem;margin:10px 0 4px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.task:last-child{border-bottom:0}
+.task input{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;margin:1px 0 0;border:2px solid var(--muted);border-radius:6px;display:grid;place-content:center;background:transparent;cursor:pointer}
+.task input:checked{background:var(--accent);border-color:var(--accent)}
+.task input:checked::after{content:"";width:6px;height:11px;border:solid var(--on-accent);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.task input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.task:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.chip{display:inline-block;font-size:.78rem;font-weight:600;padding:1px 8px;border-radius:10px;background:var(--gold-bg);color:var(--gold);margin-left:6px;vertical-align:1px}
+.src{display:block;color:var(--muted);font-size:.85rem}
+.foot{text-align:center;margin-top:18px}
+.foot button{background:none;border:1px solid var(--line);color:var(--muted);padding:10px 16px;border-radius:8px;font:inherit;cursor:pointer}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Plano de estudos: Ciência de Dados</h1>
+<p class="sub">12 semanas, cerca de 5 h por semana. Seu progresso fica salvo neste aparelho.</p>
+<div class="bar"><i id="bar"></i></div>
+<div class="pct"><span><b id="done">0</b> de <b id="total">0</b> tarefas</span><b id="pct">0%</b></div>
+<nav role="tablist"><button role="tab" aria-selected="true" data-tab="plano">Plano</button><button role="tab" aria-selected="false" data-tab="cursos">Cursos e certificados</button></nav>
+</div></header>
+<main><div class="wrap">
+<section id="plano"></section>
+<section id="cursos" hidden></section>
+<div class="foot"><button id="reset">Zerar progresso</button></div>
+</div></main>
+<script>
+var PLANO=[
+{t:"Estatística aplicada",w:"Semanas 1 e 2",g:"Base para testes, inferência e leitura crítica de métricas de audiência.",k:[
+"Revisar distribuições (normal, binomial, Poisson, log-normal) e quando cada uma aparece em dados de redes sociais",
+"Teorema central do limite e lei dos grandes números, com simulação em Python",
+"Intervalos de confiança e testes de hipótese: t, qui-quadrado, Mann-Whitney",
+"Poder estatístico, tamanho de efeito e correção para múltiplas comparações",
+"Desenhar e analisar um teste A/B completo (tamanho de amostra, duração, leitura do resultado)",
+"Regressão linear e logística: pressupostos, diagnóstico de resíduos e multicolinearidade",
+"Introdução à inferência bayesiana (priors, posterior, A/B bayesiano)",
+"Correlação x causalidade: ler os capítulos iniciais de Causal Inference for the Brave and True"]},
+{t:"Matemática para ML",w:"Semana 3",g:"O suficiente para entender por que os algoritmos funcionam.",k:[
+"Álgebra linear: vetores, produto matricial, inversa e posto",
+"Autovalores, autovetores, SVD e a ligação com PCA",
+"Cálculo: derivadas parciais, regra da cadeia e gradiente",
+"Gradiente descendente: implementar do zero em NumPy para uma regressão",
+"Probabilidade: Bayes, esperança, variância e máxima verossimilhança",
+"Fazer a série Essence of Linear Algebra (3Blue1Brown) para fixar a intuição"]},
+{t:"SQL avançado",w:"Semana 4",g:"Consultas mais limpas, rápidas e analíticas.",k:[
+"Window functions: ROW_NUMBER, RANK, LAG/LEAD, somas e médias móveis",
+"CTEs, subconsultas correlacionadas e consultas recursivas",
+"Cohort e retenção em SQL puro (primeira interação, semanas seguintes)",
+"Joins avançados, deduplicação e armadilhas de duplicação de linhas",
+"Ler planos de execução (EXPLAIN) e reduzir custo: filtros por partição, SELECT só das colunas necessárias",
+"Particularidades do BigQuery: ARRAY, STRUCT, UNNEST e tabelas particionadas",
+"Resolver 15 exercícios de nível difícil (StrataScratch, LeetCode ou DataLemur)"]},
+{t:"Python para dados",w:"Semana 5",g:"Código de ciência de dados que outras pessoas conseguem manter.",k:[
+"pandas avançado: groupby com agg nomeado, merge_asof, pivot e uso de memória",
+"Vetorização em vez de apply e loops; medir com %timeit",
+"Funções com tipagem, docstrings e tratamento de erros",
+"Testes com pytest para funções de transformação de dados",
+"Organizar código em módulos e pacotes (sair do notebook único)",
+"PySpark: DataFrame API, UDFs x funções nativas e lazy evaluation",
+"Git no dia a dia: branches, pull requests e revisão de código"]},
+{t:"Projeções e séries temporais",w:"Semanas 6 e 7",g:"Conecta direto com suas projeções de métricas de redes sociais.",k:[
+"Componentes de série temporal: tendência, sazonalidade, ciclos e decomposição STL",
+"Estacionariedade, diferenciação e ACF/PACF",
+"Modelos de base: ingênuo sazonal, médias móveis e ETS",
+"ARIMA/SARIMA e Prophet: quando usar cada um",
+"Validação temporal: janela expansiva, backtesting e por que não usar validação cruzada aleatória",
+"Métricas de erro: MAE, RMSE, MAPE, sMAPE e WAPE (e limites de cada uma)",
+"Previsão com gradient boosting: criar lags, médias móveis e variáveis de calendário/eventos (estreias, jogos, feriados)",
+"Intervalos de previsão e regressão quantílica para comunicar incerteza",
+"Previsão hierárquica e reconciliação (marca > plataforma > conteúdo)",
+"Ler o livro Forecasting: Principles and Practice (Hyndman), capítulos 1 a 9"]},
+{t:"Machine Learning",w:"Semanas 8 e 9",g:"Fundamentos sólidos mais o que o mercado cobra em entrevistas.",k:[
+"Viés e variância, regularização (L1/L2) e overfitting",
+"Validação cruzada, vazamento de dados (data leakage) e escolha de métricas",
+"Árvores, random forest e gradient boosting (XGBoost, LightGBM): hiperparâmetros principais",
+"Ajuste de hiperparâmetros com Optuna",
+"Interpretabilidade: SHAP, importância por permutação e gráficos de dependência parcial",
+"Classes desbalanceadas, calibração de probabilidades e curvas ROC/PR",
+"Clusterização e redução de dimensionalidade (k-means, UMAP) para segmentar audiência",
+"NLP para social listening: embeddings, modelagem de tópicos e análise de sentimento em português",
+"Noções de MLOps: versionamento de modelos, monitoramento e drift"]},
+{t:"Databricks",w:"Semanas 10 e 11",g:"Do notebook ao pipeline em produção.",k:[
+"Arquitetura Lakehouse, Delta Lake e arquitetura medalhão (bronze, prata, ouro)",
+"Delta: MERGE, time travel, OPTIMIZE e Z-ORDER",
+"Spark SQL e DataFrames: particionamento, shuffle e broadcast join",
+"Entender o Spark UI para achar gargalos",
+"Unity Catalog: catálogos, esquemas, permissões e linhagem",
+"Workflows (Jobs): agendar e orquestrar notebooks com parâmetros",
+"MLflow: registrar experimentos, métricas e modelos",
+"Integração Databricks e BigQuery: leitura, escrita e custos",
+"Fazer o simulado do exame Databricks Certified Machine Learning Associate"]},
+{t:"Projeto de portfólio e revisão",w:"Semana 12",g:"Consolidar tudo em algo que você pode mostrar.",k:[
+"Escolher um caso de Social Insight (ex.: prever picos de engajamento ao redor de estreias)",
+"Pipeline completo: dados, features, modelo, backtesting e métricas",
+"Registrar experimentos no MLflow e documentar decisões",
+"Publicar no GitHub com README claro e gráficos",
+"Escrever um post no LinkedIn contando o problema, o método e o resultado",
+"Revisar as tarefas em aberto e planejar o próximo ciclo"]}
+];
+var CURSOS=[
+{n:"Databricks Certified Machine Learning Associate",o:"Databricks Academy",p:1,d:"Certificação com peso para quem usa Databricks no dia a dia. Os cursos de preparação costumam ser gratuitos."},
+{n:"Databricks Certified Data Engineer Associate",o:"Databricks Academy",p:1,d:"Cobre Delta Lake, Spark e pipelines. Muito reconhecida por recrutadores de dados."},
+{n:"Machine Learning Specialization",o:"DeepLearning.AI / Coursera (Andrew Ng)",p:1,d:"Revisão sólida de fundamentos de ML, com certificado."},
+{n:"Mathematics for Machine Learning",o:"Imperial College London / Coursera",p:0,d:"Álgebra linear, cálculo multivariado e PCA na medida certa."},
+{n:"Statistics with Python",o:"University of Michigan / Coursera",p:1,d:"Inferência, regressão e modelos multinível aplicados em Python."},
+{n:"A/B Testing",o:"Google / Udacity",p:1,d:"Curso curto e prático de experimentação, muito útil em produto e conteúdo."},
+{n:"Time Series Analysis e Forecasting",o:"Kaggle Learn e livro FPP3 (gratuitos)",p:0,d:"Complemento direto das semanas de projeções; o FPP3 é referência da área."},
+{n:"Advanced SQL e Intro to SQL",o:"Kaggle Learn (BigQuery)",p:0,d:"Micro cursos gratuitos com certificado, focados em BigQuery."},
+{n:"Google Cloud Professional Data Engineer",o:"Google Cloud Skills Boost",p:0,d:"Certificação mais longa, vale se BigQuery for central na sua rotina."},
+{n:"Trilhas de Ciência de Dados e Estatística",o:"Alura / FIAP / DIO",p:0,d:"Opções em português, boas para constância e para listar no currículo local."},
+{n:"Causal Inference for the Brave and True",o:"Livro online gratuito",p:0,d:"Inferência causal prática em Python; diferencial em análises de impacto."}
+];
+var KEY="plano-estudos-v1",S={};
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){S={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+var ids=[],groups=[];
+function build(){
+var h="";
+PLANO.forEach(function(b,i){
+var g=[];
+h+='<details'+(i===0?' open':'')+'><summary><span class="t">'+esc(b.t)+'</span><span class="c" data-c="'+i+'"></span><span class="w">'+esc(b.w)+'</span><span class="mini"><i data-m="'+i+'"></i></span></summary><div class="body"><p class="goal">'+esc(b.g)+'</p>';
+b.k.forEach(function(k,j){var id="p"+i+"_"+j;ids.push(id);g.push(id);
+h+='<label class="task"><input type="checkbox" data-id="'+id+'"><span>'+esc(k)+'</span></label>'});
+groups.push(g);h+='</div></details>'});
+document.getElementById("plano").innerHTML='<div class="note">Marque cada tarefa ao concluir. Se perder uma semana, siga em frente e retome depois: a ordem é uma sugestão.</div>'+h;
+var c='<div class="note">Priorize os itens marcados com “Alto impacto”. Confira preços, gratuidade e disponibilidade nos sites antes de se inscrever, pois mudam com frequência.</div><details open><summary><span class="t">Cursos e certificações</span><span class="c" data-c="x"></span><span class="w">Para ganhar peso no currículo</span><span class="mini"><i data-m="x"></i></span></summary><div class="body">',cg=[];
+CURSOS.forEach(function(k,j){var id="c"+j;ids.push(id);cg.push(id);
+c+='<label class="task"><input type="checkbox" data-id="'+id+'"><span>'+esc(k.n)+(k.p?'<em class="chip" style="font-style:normal">Alto impacto</em>':'')+'<b class="src" style="font-weight:500">'+esc(k.o)+'</b><b class="src" style="font-weight:400">'+esc(k.d)+'</b></span></label>'});
+c+='</div></details>';groups.push(cg);
+document.getElementById("cursos").innerHTML=c;
+document.querySelectorAll("input[data-id]").forEach(function(el){el.checked=!!S[el.dataset.id]})}
+function upd(){
+var pd=0,tot=PLANO.reduce(function(a,b){return a+b.k.length},0);
+groups.forEach(function(g,gi){var n=g.filter(function(id){return S[id]}).length;
+var key=gi<PLANO.length?gi:"x";
+document.querySelector('[data-c="'+key+'"]').textContent=n+"/"+g.length;
+document.querySelector('[data-m="'+key+'"]').style.width=(100*n/g.length)+"%";
+if(gi<PLANO.length)pd+=n});
+document.getElementById("done").textContent=pd;document.getElementById("total").textContent=tot;
+var p=Math.round(100*pd/tot);document.getElementById("pct").textContent=p+"%";document.getElementById("bar").style.width=p+"%"}
+document.addEventListener("change",function(e){var id=e.target.dataset&&e.target.dataset.id;if(!id)return;
+if(e.target.checked)S[id]=1;else delete S[id];save();upd()});
+document.querySelectorAll("nav button").forEach(function(b){b.addEventListener("click",function(){
+document.querySelectorAll("nav button").forEach(function(x){x.setAttribute("aria-selected",x===b)});
+document.getElementById("plano").hidden=b.dataset.tab!=="plano";
+document.getElementById("cursos").hidden=b.dataset.tab!=="cursos";window.scrollTo(0,0)})});
+var rb=document.getElementById("reset"),rt;
+rb.addEventListener("click",function(){
+if(rb.dataset.arm){S={};save();document.querySelectorAll("input[data-id]").forEach(function(el){el.checked=false});upd();rb.textContent="Zerar progresso";delete rb.dataset.arm;clearTimeout(rt);return}
+rb.dataset.arm=1;rb.textContent="Toque de novo para confirmar";
+rt=setTimeout(function(){rb.textContent="Zerar progresso";delete rb.dataset.arm},4000)});
+build();upd();
+</script>
+</body>
+</html>
